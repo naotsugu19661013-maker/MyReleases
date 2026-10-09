@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Upstream Documents"
+  short_description: "Maintain current decisions in authoritative upstream documents."
+  default_prompt: "Use $software-upstream-documents to create or revise this upstream document by organizing the currently valid decisions from its source materials."
