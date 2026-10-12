@@ -1,4 +1,4 @@
 interface:
   display_name: "Software Upstream Documents"
-  short_description: "Maintain current decisions in authoritative upstream documents."
-  default_prompt: "Use $software-upstream-documents to create or revise this upstream document by organizing the currently valid decisions from its source materials."
+  short_description: "Draft development documents with shared quality and scope rules."
+  default_prompt: "Use $software-upstream-documents to create, revise, or review this development document against its purpose and canonical sources, applying basic-design granularity rules when relevant."

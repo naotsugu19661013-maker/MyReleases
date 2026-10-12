@@ -1,155 +1,85 @@
-# Common quality rules
+# 共通品質ルール
 
-Apply these rules to every supported document type, within the selected profile's existing responsibility.
+すべての対象文書に適用する。記述量を減らすこと自体を目的とせず、その文書の判断・記録を正確に理解できる、必要十分な文章を作る。基本設計書固有の粒度は [基本設計の記述範囲と粒度](basic-design.md) に従う。
 
-## Authoritative-document character
+## 文書の目的と所有する内容
 
-- Center the document on currently valid decisions, requirements, constraints, and safety conditions that it owns. Its purpose is to explain the present specification or policy to the next process and future maintainers.
-- Completeness means that the document's required decisions and conditions are covered at the proper level. It does not mean preserving every statement from the inputs.
-- Preserve the project's canonical-source and cross-document ownership rules. Keep the current specification in its owning authoritative document, detailed observations in investigation or verification records, change history in change records, and durable decision rationale in the project's decision-record area when one exists. Reference an owning document instead of copying its full content.
+文書の中心は、その文書が現在決定・記録する事項とする。仕様の正本では現行の要求・判断・制約を、調査記録では観察結果と根拠を、作業計画では実施する作業と依存関係を扱う。記載の要否と粒度は、その文書の目的とプロジェクトの所有関係で判断する。旧種別の章立てや必須項目を当てはめない。
 
-## Classify source meanings before drafting
+他の正本にある仕様は、原則として文書・節・識別子への参照にとどめる。今回の変更差分、調査結果、作業計画、確認結果など、この文書が所有する内容を説明するために必要な前提だけを短く示し、既存仕様を丸写ししない。参照元の仕様を変更・再定義する場合は、その権限と正本への反映先を確認する。作業計画や確認記録を、製品仕様の別の正本にしない。
 
-Split mixed paragraphs into meaning-level items before creating or revising the artifact. Distinguish at least the following categories; a source paragraph may contain several. Keep source location, authority/status, owner, and intended disposition in a working inventory. This inventory and its category names are internal authoring aids, not content for the artifact, its metadata, or its revision history, and not a required new deliverable or permanent record.
+議論、調査、証拠、変更経緯、判断理由は、それぞれ既存の所有文書へ置く。ただし、その内容自体が今回の文書の目的なら記載する。仕様の正本には現在の判断を中心に書き、解釈や将来の変更に必要な理由だけを添える。新しい記録体系を作る必要はない。
 
-| Source category | Treatment |
-| --- | --- |
-| Currently valid decision | State the adopted outcome once at its canonical location. |
-| Active requirement, constraint, or safety condition | Preserve its binding meaning, scope, qualifiers, and exceptions. |
-| Decision uniquely derivable from established facts or decisions | Synthesize one current statement after checking that no new choice is required. |
-| Background or design intent | Keep only a short reason needed to interpret or safely change the decision. |
-| Review finding | Apply the correction to wording, names, structure, or relationships; determine whether any substantive decision was actually adopted. |
-| Investigation or experiment result | Use as evidence of what was observed, not as an adopted policy or proof beyond its scope. |
-| Failure, NG example, or rare case | Find the resulting adopted decision, if any; distinguish an independent constraint from an incidental example. |
-| Past specification, retired item, or rejected option | Exclude from current rules unless it still defines an active compatibility, migration, or change-scope condition. Do not resurrect it during consolidation. |
-| Undecided or unconfirmed matter | Classify by decision ownership and confirmation status as described below. |
-| Downstream elaboration | Describe the bounded handoff under an already established upstream policy. |
-| Matter owned by an external canonical document | Reference its owner and relevant contract; do not decide or duplicate its specification here. |
+## 根拠と状態の扱い
 
-Do not assign raw input paragraphs directly to existing chapters. Determine what each item means and how it bears on current decisions first. Recency or inclusion in review material alone does not establish approval; use the governing authority order and report unresolved conflicts.
+作成・改訂の前に、混在した資料を意味単位で読み分ける。対象となる意味について、出典、権限・承認状態、所有先、今回の扱いを把握する。作業上の整理は恒久的な補助文書にする必要はない。
 
-## Synthesize decisions, do not transcribe history
+- **有効な判断・要求・制約・安全条件：** 適用範囲、限定条件、例外とともに保持する。複数の確認済み事項が一つの判断を一意に定めるなら、根拠との対応を確かめて統合する。
+- **背景・理由・レビュー指摘：** 必要な意図だけを残し、表記・構成・関係の修正は本文に反映する。レビューの説明や応答履歴を仕様として追記しない。
+- **調査・実験・失敗の記録：** 観察した範囲の証拠として扱う。失敗例から代替方式や一般要求を推測せず、採用された判断と独立した制約を確認する。
+- **過去の仕様・廃止事項・不採用案：** 現行仕様から除く。互換性、移行、変更範囲などの有効な条件を定める場合は、その条件を保持する。
+- **未決定・未確認・後工程の詳細・外部正本の事項：** 次節に従い、判断の所有先と状態を区別する。
 
-- Where discussions or reviews reach a final adopted policy, write that outcome rather than the intermediate debate. Apply editorial review instructions throughout the artifact; a naming correction should produce correct names, not a paragraph explaining the review comment.
-- Combine multiple confirmed statements when their scope and conditions uniquely establish one current decision. Preserve relevant qualifiers. Keep enough source mapping in the working inventory to verify the derivation; do not force readers through the derivation history.
-- If several reasonable product, requirement, design, or planning choices remain, Codex must not select one, even if one seems preferable. Record the missing decision. An observed failure alone does not establish the replacement policy.
-- Do not turn evidence into a generalized requirement without an adopted decision or a unique derivation from confirmed requirements. Do not send an already established decision to the unresolved list merely because it was not written in one sentence.
+資料の新しさやレビューへの記載だけで承認済みとみなさない。複数の選択肢が残る事項は、今回認められた判断範囲を超えて決定しない。一方、確認済み資料から一意に成立する判断を、単一の文で書かれていないという理由だけで未決定に戻さない。個別製品の名称、構成数、事例を他の文書にも必須の一般ルールへ変えない。
 
-## Interpret negative information
+採用、実現可能性の確認、実装、検証、承認は別の状態として扱う。自動試験、レビュー、実機・利用者確認などの証拠は、対象と確認範囲を示し、相互に代用できると推測しない。予定・予測・期待する効果を確認済みの事実として記載しない。
 
-Distinguish two uses of a prohibition or NG statement:
+## 未決定事項と後工程
 
-1. An independently binding safety condition, constraint, or prohibition requirement. Retain it with its applicable scope, even when a positive adopted policy also exists.
-2. An old method, review finding, or NG example that is only the inverse of an adopted replacement. State the current adopted policy and, when needed, its short reason; omit redundant negative history when it adds no active condition.
+不足を見つけたら、この文書が決める事項か、正本で既に決まっているかを確認する。
 
-A prohibition can be a complete constraint without being a complete solution. If the document must decide a method, responsibility, behavior, boundary, or plan, statements such as "do not use X" or "do not judge only by Y" do not settle that decision. Look for the adopted alternative; if none is established, record the missing decision and do not mark that part complete.
+この文書で必要な判断が残っている場合は、未決定の選択または衝突、影響、分かっている判断主体や必要資料を示す。判断主体を創作しない。外部正本に属する不足は依存先として示し、所有先が不明なら境界の不明確さを報告する。
 
-Write an adopted design rule so readers can first understand what the system, team, or process will do. State the adopted design or policy, then the short reason when it protects correct interpretation, and add a prohibited or avoided approach only when it remains an independent constraint or clarifies a non-obvious boundary. When several negative rules come from past failures, normalize them under the current positive principle instead of reproducing a catalog of incidents or inversions. This ordering rule does not weaken independently binding prohibitions or require every sentence to be rewritten positively.
+採用済みで確認待ちの方針は、採用内容と未確認の実現条件を分け、何を確認するか、文書の完成を妨げるかを示す。承認前の提案も確定事項と区別する。
 
-## Keep necessary intent, bound the evidence
+後工程へ委ねる事項は、確定した方針の下で具体化する範囲と、その所有工程・文書を分かる範囲で示す。必要な契約や安全条件を維持したまま、責務・設計領域ごとに簡潔に記載する。詳細を所有する文書では、その目的に必要な具体性を確保する。
 
-Attach a short rationale when misunderstanding the reason would make a future change likely to break the governing policy. State the decision first and make the reason subordinate. Keep decision and reason distinguishable without requiring separate rationale chapters.
+必要な判断の未決定と、境界内での後工程の具体化を区別する。前者は該当部分の完成を妨げるが、後者まで未解決事項として積み上げない。
 
-Do not fill the authoritative body with discussion chronology, review replies, individual failures, experiment logs, test-result detail, rejected-option detail, speaker attribution, or explanations of the editing work. Cite or link existing investigation, validation, review, change, or evidence records when the technical basis matters; summarize only the minimum background needed to understand the current rule. When the project has ADRs, decision records, or an equivalent managed area, prefer that owner for durable rationale, rejected alternatives, and reconsideration conditions. Do not create a new record-management scheme merely to satisfy this rule. A proposal may need decision-level alternatives or feasibility context, and a change specification may need a concise problem and evidence statement, as their profiles require. Such material remains context, not a substituted or inferred decision.
+## 重複の整理と改訂時の意味保持
 
-## Separate unresolved decisions, confirmation, and handoff
+各要求・判断・責務・方針には、一つの正規の記述箇所を置く。他の箇所では、その箇所固有の関係・結果または短い参照を示す。横断的な制約は共有する箇所に集約し、機能ごとに同じ説明を繰り返さない。同義の言い換え、念押し、過剰な具体例は、判断を変えないなら削減する。
 
-For each gap, first ask whether the profile requires this document to decide it and whether the available authoritative material already settles it. Distinguish:
+改訂では、旧文書と変更指示の有効な意味を先に把握する。残す、統合する、承認された内容に置き換える、移動する、所有先を参照する、不要として除くという扱いを、根拠と対応させる。文言・旧構造の保存と、設計上の意味の保持を混同しない。
 
-| Status | What to state |
-| --- | --- |
-| Additional decision required here | The precise missing choice or conflict, its effect, and the responsible authority or required decision input when known. Do not invent an owner or imply that Codex can approve it. |
-| Policy adopted, confirmation still required | The adopted policy separately from the unverified feasibility or condition; identify what remains to be checked and whether it blocks the profile's completion criteria. Do not present adoption as successful verification. |
-| Downstream elaboration | The settled upstream policy, the bounded detail to elaborate, and the owning process or document when known. This is not an unresolved upstream decision. |
+完成物と元資料を両方向から比較し、有効な要求、判断、責務境界、受入条件、独立した禁止・安全条件、適用範囲、数量、例外、必要な意図が失われていないことを確認する。統合・移動・参照化も意味が残れば保持とするが、限定条件の脱落、根拠のない追加、廃止事項の復活を見逃さない。除去理由は作業報告に必要な範囲で示し、本文へ編集経緯を持ち込まない。
 
-If a missing decision belongs to an external canonical document, identify that dependency and owner rather than deciding it here. If ownership is unclear, report the boundary uncertainty instead of arbitrarily assigning it downstream.
+新規作成では根拠との対応を、改訂では旧文書からの保持と承認された変更を確認する。レビューでは同じ観点で欠陥を報告する。比較根拠が不足する場合は、判定できる範囲と不足を示す。意味保持は全入力の保存ではなく、現在有効な内容の保持である。
 
-Reflect the decided portion and clearly separate the remaining matters from binding statements. Do not defer this document's required decisions to a later process, or keep downstream implementation details in its unresolved-decision backlog. At completion, always report newly detected unresolved matters, including explicit confirmation-pending items, or state that none were found. A required decision still open prevents a claim that the affected document is complete; not every bounded downstream detail does.
+## 構成と用語
 
-## Reading order and definitions
+必要な前提と全体像から個別の判断へ進む構成にする。各章は一つの識別できる主題を扱い、詳細に入る前に、その詳細の位置付けが分かるようにする。番号付きの責務・構成要素は全体と関係を示してから用い、番号から処理順序を推測しない。
 
-- Organize from necessary context and whole-system understanding toward specific decisions. Use the profile as an internal meaning and completion checklist, not a fixed chapter template. Existing structure may be retained or reconstructed according to clarity and project standards.
-- When the document is long or structurally complex enough that readers cannot quickly see where major subjects are located, provide a concise table of contents or equivalent section map near the beginning. Show the main structure; do not require deep link trees or every minor heading. Omit navigation when a short, simple document is already easy to scan.
-- Define a term when it differs from ordinary usage, needs distinction from a neighboring concept, serves as a consistent formal name, or could change a design or implementation judgment if misunderstood. State enough meaning, scope, and distinguishing conditions for readers to decide whether something belongs to that concept or a neighboring one. The goal is a usable conceptual boundary, not a large glossary; leave ordinary words used normally undefined.
-- Introduce necessary definitions before or at first use, inline or in a glossary as appropriate. A profile's mention of terminology does not require a glossary or definitions that the content does not need. Use one formal name per concept and one meaning per term. Define needed abbreviations or aliases and use them consistently; do not alternate synonyms or paraphrases without a naming rule.
-- Present the complete set or structure before referring to one numbered member. For example, explain the complete processing flow before discussing a later stage.
-- Keep every chapter responsible for one recognizable subject and make transitions logically progressive. When an opening guide is needed, combine it into one concise introduction. Do not stack purpose, scope, contents, and "this chapter explains" paragraphs that preview what the immediately following body already makes clear. Keep drafting notes separate from the authoritative body; retain only guidance needed by the finished document's reader.
-- Do not introduce a fundamental policy for the first time near the end or restate the document's purpose as a closing substitute for structure.
+長い文書や複雑な文書には、主要な章へ到達できる簡潔な目次・案内を冒頭に置く。短い文書へ一律に目次を付けず、章の目的・範囲・内容紹介で直後の本文を重ねて説明しない。基本方針を末尾で初めて定義したり、結末で文書の目的を再説明したりしない。
 
-## Single source of truth inside the document
+一つの概念には一つの正式名称を、一つの用語には一つの意味を用いる。略称・別名が必要なら対応を明示する。通常と異なる意味、隣接概念との区別、設計・実装判断に関わる用語は、初出までに範囲と区別できる条件を示す。通常の語の辞書的定義や、不要な用語集は作らない。
 
-- Give each requirement, decision, responsibility, and policy one canonical statement.
-- In other locations, describe only a distinct relationship, consequence, or minimal explicit cross-reference. Check meaning across summaries, purposes, scope statements, supplements, and cautions, not merely identical wording. "Prevent misunderstanding", "just in case", or "make it clearer" alone does not justify another equivalent statement; improve the canonical statement if it is unclear.
-- Separate functional structure from cross-cutting requirements. Centralize safety, security, privacy, logging, diagnostics, error classification, quality, and similar concerns when they apply across multiple functions.
+見出しと本文には、文書の分野・読者に自然な語を選ぶ。スキル名、分類名、作業用の確認項目名など、執筆内部の仕組みを本文・変更履歴に露出させない。プロジェクトが正式に使う名称はその用法に従う。
 
-## Scope and level
+## 日本語の論理構成と文章品質
 
-- Respect the selected profile's responsibility. Do not put class layouts, method-level algorithms, database implementation details, API field-by-field contracts, or equivalent low-level design into an upstream document unless the item is an externally observable or architecturally binding constraint owned by that document.
-- Do not let an implementation plan redefine product behavior, or let a proposal commit to detailed implementation.
-- Express downstream handoff as a small set of responsibilities or design areas to elaborate under the settled upstream policy. Do not inventory individual APIs, parameters, fields, candidate fixed values, classes, algorithms, or tasks merely because downstream work must decide them. Retain binding contracts, safety boundaries, open upstream decisions, and other conditions whose loss would permit the downstream design to change current intent.
-- Aim for the minimum wording that enables an unambiguous judgment at the document's level, rather than maximum detail or minimum length. Review background, paraphrases, chapter guides, and reassurance for removal when judgment remains possible without them. Preserve contracts, responsibilities, safety conditions, scope, exceptions, boundaries, and necessary intent; added detail must come from authoritative decisions, not create a new specification.
+通常の仕様・責務・判断は、主体が何を行い、何を成立させるかを結論から肯定形で述べる。必要な理由を短く添え、境界・例外・禁止は区別して示す。独立した禁止はその強さを保持する。「何をしないか」だけでは、必要な方式や通常の動作を決めたことにならない。
 
-## Audio-first document presentation
+主語と述語の対応を明確にし、一文の中心となる意味を一つにする。前提、結論、理由、境界を分けることで理解しやすくなる場合は文を分ける。ただし、短文を機械的に羅列せず、段落で一つの論点を説明する。長い前置きを文末の否定で反転させない。
 
-Apply this presentation rule to upstream documents created or revised for user confirmation, review, or approval, including their appendices and any comparison, review-finding, or test-result summaries included in them. Present their information through headings and prose that a listener can understand in reading order.
+条件と結果、原因と結果、原則と例外、対比が読み手の推測に委ねられないように接続する。「ただし」「一方」「したがって」「そのため」などは、既に成立する関係を自然に示す場合に使う。接続詞を機械的に挿入したり、読みやすさのために根拠のない判断・理由・例外・説明を足したりしない。
 
-- Do not include diagrams, charts, images, tables, or pseudo-tables. This includes embedded or linked visual substitutes, Mermaid or ASCII diagrams, aligned columns, tab-separated or delimiter-separated rows, and code blocks used to simulate a table or diagram. Visual clarity, compactness, and essential mappings or comparisons do not justify an exception. An image caption or accompanying prose does not make a prohibited visual expression acceptable.
-- Replace visual expressions with headings and connected sentences. Numbered or bulleted items may organize the prose when each item states an understandable relationship without depending on alignment, symbols, color, or spatial position. A table of contents may remain a sequential list of section names and links; it must not use a tabular layout.
-- Preserve all information required within the document's responsibility. For each comparison, name the subject, comparison criterion, value or outcome, applicable conditions, and exception. For mappings, state both sides and the relationship explicitly. For flows or structures, state the participants, direction, order or dependency, branches, exceptional paths, and completion conditions that the source establishes. Do not infer a processing order from responsibility numbers. Empty cells, merged cells, ditto marks, and legends must be interpreted from the source; preserve distinctions such as not applicable, unknown, and not verified without inventing missing information.
-- Use the semantic inventory and content-retention review to verify the conversion against the source, including quantities, units, identifiers, qualifiers, evidence scope, and confirmation status. Where the source leaves a relationship unresolved, report that uncertainty rather than filling it in. Follow the existing decision/evidence ownership rules; conversion does not require importing raw review or test records into an authoritative body.
-- This restriction governs the document's presentation. It does not automatically restrict source code, machine-readable data, raw evidence outside the document, or this skill's internal routing, classification, and management information. Internal reference tables and profile criteria are authoring aids, not output layouts. A template or source visual must be converted when used in an in-scope document; a reference to an owning canonical document may remain, but it must not make understanding the current document depend on viewing a figure or table.
-- A governing project format that mandates a prohibited visual expression is a conflict to report under the existing authority rules. Do not silently retain the visual expression, invent an exception, or claim that the affected document has passed the completion gate.
+「対象」「処理」「情報」「状態」などは、候補が複数ある場合に具体名で限定する。「この場合」「これら」「上記」「前述」などの指示語は、近くの文で指示先が明確な場合に使う。探す必要があるなら、具体名や正本の該当節を示す。参照を明確にするために仕様全文を繰り返さない。
 
-## Prose and presentation
+「適切に」「必要に応じて」「安全に」などが仕様・採否・完成の判断を左右する場合は、判断条件または条件を所有する正本・節を示す。文脈で意味が定まる通常の用法まで禁止しない。列挙の漏れが仕様や責務を変える場合は、対象を列挙し切るか範囲を定義し、「等」で曖昧にしない。
 
-- State ordinary specifications, responsibilities, behavior, and judgments affirmatively, with the conclusion first.
-- Explain what the subject does or is before describing exclusions, exceptions, or prohibitions. When both intended behavior and its boundary are required, state the behavior first and the boundary in a separate sentence.
-- Reserve negative or prohibitive wording for exceptions, exclusions, boundary conditions, and independently binding prohibitions whose meaning requires it. Preserve the full force of critical prohibition contracts.
-- Define normal responsibilities through their intended actions and outcomes. A list of things a subject does not do is insufficient to define its normal responsibility.
-- Give each sentence one main meaning. Separate premises, conclusions, rationale, and boundaries when combining them would obscure their relationship in sequential listening. Connect related sentences so cause and effect, condition and result, principle and exception, and contrast are understandable without the reader having to infer the connection; avoid mechanically listing short sentences.
-- In Japanese prose, use connectives or demonstratives such as `ただし`, `一方`, `しかし`, `したがって`, `そのため`, `この場合`, and `これらは` when they clarify an established relationship. Choose natural wording that fits the context, rather than inserting these expressions mechanically or increasing text volume. Improve the expression of existing meaning without adding design decisions, reasons, exceptions, or explanations.
-- Make a sentence's direction clear at the beginning. Avoid a long sequence of premises whose overall meaning is reversed by a negation at the end.
-- Base specification, adoption, and completion judgments on defined conditions. Qualifiers such as `safe`, `appropriate`, `as needed`, `where possible`, `useful`, and `relevant`, including equivalents in other languages, require defined conditions when they determine such judgments.
-- Define the judgment conditions for a necessary ambiguous concept, or explicitly reference the canonical document and section that owns those conditions. These words remain usable in context when they do not serve as undefined decision criteria.
-- Use a complete enumeration or an explicit scope definition when omitted members would change a specification, responsibility, or acceptance condition. In those cases, avoid open-ended expressions such as `etc.` or `等`.
-- Explain concepts, relationships, and reasoning in prose. Apply [audio-first document presentation](#audio-first-document-presentation) when organizing requirements, conditions, procedures, mappings, and comparisons.
-- Avoid endless bullet chains, chapters with unrelated responsibilities, and wording that sounds pasted from successive reviews.
-- Use natural professional language for the document's domain and audience. Do not mechanically translate internal English concepts or force profile labels into headings. English, Japanese, or established loanwords may be used when they are clearer in context.
-- Keep authoring machinery out of the artifact: profile and workflow names, source-classification labels, semantic inventory, checklist names, skill names, and completion-process commentary normally belong only in the work report.
-- Use names that identify the referent. Broad words such as `target`, `processing`, `information`, or `state` (including `対象`, `処理`, `情報`, and `状態`) need qualification when several referents are plausible, such as `input data`, `supported environment`, `user`, or `processing result`. Ordinary contextual use remains valid when its meaning is unambiguous.
-- Make each demonstrative's referent clear. Use a concrete name or explicit canonical section reference when `this section`, `above`, `as follows`, `previously described`, `in this case`, or `these` (including `本節`, `上記`, `以下のとおり`, `前述`, `この場合`, and `これら`) would force readers to search or guess. Make the local subject and applicable contract or exception understandable, using the necessary relationship and a precise reference rather than repeating the full rule.
-- Evaluate comprehension when a screen reader or text-to-speech reads from top to bottom. A listener must be able to follow the structure, subject, conclusion, conditions, and logical relationships in order without relying on visual position. Repeated explanations and unexplained forward references are defects even when technically accurate.
+概念、関係、理由はつながる文章で説明する。箇条書きは独立した条件や順序を整理する場合に使い、関連する説明を長大な箇条書きへ分解しない。簡潔さは文字数ではなく、重複を除いても必要な判断と論理関係が保たれることで評価する。
 
-## Semantic and sequential-reading self-review
+## 読み上げ順序とアクセシビリティ
 
-Before completing a new or revised document or presenting it for confirmation, review, or approval, inspect the entire output, including appendices, embedded content, and linked visual substitutes, against [audio-first document presentation](#audio-first-document-presentation). Confirm that no prohibited visual expression remains. Then read it from beginning to end as a new listener, using only the headings and spoken text, and check:
+対象文書は、見出しと本文を先頭から読み上げたときに、主体、結論、条件、関係を順に理解できる表現にする。付録、本文に含める比較・レビュー・確認結果にも適用する。
 
-- Is the same meaning repeated in different words rather than adding a distinct decision, condition, or relationship?
-- Does any term carry multiple meanings, or any concept appear under multiple names without a defined naming rule?
-- Can necessary definitions distinguish each concept from its neighbors?
-- Does any broad name or contextual pointer require the reader to guess or search before its meaning is clear?
-- Does every converted comparison, mapping, flow, or structure retain the source information and explicit relationships, including conditions, exceptions, quantities, and evidence or confirmation status, without relying on a visual layout or a separate visual artifact?
-- Do explanations and transitions connect naturally from top to bottom, including chapter openings and first uses of terms, with cause and effect, condition and result, principle and exception, and contrast clear between sentences? Do connectives fit the context without mechanical insertion?
-- Can expendable explanation be removed while preserving every binding contract, responsibility boundary, condition, and exception?
-- Has elaboration or wording improvement introduced a specification, choice, reason, exception, or explanation unsupported by authoritative sources?
+図、グラフ、画像、表、疑似表は使わない。Mermaid・ASCII図、整列した列、タブや区切り文字による行、表・図を模したコードブロック、埋込み・リンクによる代替図表も含む。視覚的な分かりやすさや対応関係の複雑さを理由とする例外は設けない。説明文やキャプションの追加だけでは適合しない。
 
-Correct detected defects within the authorized scope and source authority, then repeat the affected checks before completion. If a defect or format conflict cannot be resolved, report the affected content and reason and do not claim that the document is complete or ready for approval. This gate requires both absence of prohibited visual expressions and meaning-level sequential comprehension; a syntax scan or word-count check alone cannot establish a pass.
+比較は対象・観点・結果・条件を、対応関係は両側と関係を、流れや構造は関係者・方向・順序または依存・分岐・例外・完了条件を文章で示す。元資料で確定している情報と関係を保持し、数量・単位・識別子・限定条件・承認状態・証拠範囲を失わない。空欄や同上などは元の意味を確認し、対象外、不明、未確認、未実施を区別する。未確定の関係は推測で埋めない。
 
-## Current-decision audit
+番号付き項目・箇条書き・目次リンクは、配置・色・記号に頼らず各項目の関係を理解できる場合に使える。正本への参照は可能だが、図表を見なければ本文を理解できない構成にしない。
 
-For every major chapter or item, check:
+この制限は文書の表現に適用し、ソースコード、機械可読データ、文書外の生の証拠、スキル内部の管理情報へ一律に広げない。プロジェクトの必須形式と衝突する場合は、例外を創作せず、衝突を報告する。
 
-- What currently valid decision, requirement, or condition does it establish within this document's responsibility? If it is context, intent, or a reference, is its supporting role necessary and clear?
-- Is any discussion, review finding, investigation result, failure example, or rejected option being treated as a decision without authority?
-- Does any design rule end with only a negative statement or prohibition where the document must state an adopted method or policy? Is the adopted direction and, when needed, its reason understandable while independently binding prohibitions remain preserved?
-- Have uniquely established decisions been synthesized instead of unnecessarily marked unresolved? Has any choice unsupported by the sources been invented?
-- Has a required upstream decision been deferred, or a downstream detail been misclassified as an unresolved upstream choice?
-- Do the current decisions remain more prominent than their history, and is retained rationale short and useful? Has a rationale section become a replay of investigation reports, validation results, review records, or work logs?
-- Are the authoritative document, evidence records, decision records, change records, and externally owned documents performing distinct roles, with references instead of unnecessary duplication?
-- Does the body or revision history contain authoring process, profile/workflow/check names, semantic-inventory language, skill names, or other internal terminology that the product or project does not need?
-- Does any chapter or explanation exist only to mirror profile fields or fill a template? Are headings and audience terms natural for this document, and are ordinary terms left undefined when no special meaning exists?
-- If the document is long or structurally complex, can readers see and navigate its major structure near the beginning? If it is short, has unnecessary navigation or structure been avoided?
-- Is downstream handoff grouped by responsibility or design area rather than expanded into an excessive technical-item inventory, while binding contracts, safety conditions, and genuine unresolved matters remain visible?
-- Can the current artifact be understood without past versions or input discussions, using only necessary references to other canonical documents?
-
-Resolve defects before claiming completion. When source limitations prevent resolution, report the decided portion and the specific remaining gap; do not label the document complete.
+品質ゲートでは、文書全体の意味と読み上げ順序を確認する。図表の構文検出だけで合格とせず、視覚表現から移した関係の保持と、過去の版・議論に頼らない理解を確かめる。実際の読み上げ再生を行っていなければ、再生試験を実施したとは報告しない。
