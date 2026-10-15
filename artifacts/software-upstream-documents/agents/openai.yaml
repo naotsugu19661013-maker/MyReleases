@@ -1,4 +1,4 @@
 interface:
   display_name: "Software Upstream Documents"
-  short_description: "Draft development documents with shared quality and scope rules."
-  default_prompt: "Use $software-upstream-documents to create, revise, or review this development document against its purpose and canonical sources, applying basic-design granularity rules when relevant."
+  short_description: "Create, update, or review requested development documents."
+  default_prompt: "Use $software-upstream-documents for this explicitly requested development document task, selecting create, update, or review mode by intent and target state, honoring limited scope and validating at each gate."
