@@ -11,6 +11,8 @@
 
 ## ファイル案内
 
+- [文書案内・現在有効な正本](docs/00_管理/README.md)
+- [software-upstream-documents スキル改善方針書 v1.0（承認済み・正式版）](docs/20_設計/software-upstream-documents_スキル改善方針書_v1.0.md)
 - [小説版 VoiceClick v3.0 基本設計書 v0.1](artifacts/小説版ボイスクリックv3.0_基本設計書_v0.1.md)
 - [ドラマ仕立て脚本：ボイスクリック基本設計 v0.1](artifacts/ドラマ仕立て脚本ボイスクリック基本設計_v0.1.md)
 - [文書作成用スキル](artifacts/software-upstream-documents/SKILL.md)
